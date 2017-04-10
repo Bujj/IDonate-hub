@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content_top %}
+
+{% include "layouts/search.html" %}
+<div class="double-border"></div>
+    
+{% endblock %}
+
+{% block content %}
+<!-- Start Content -->
+
+<div class="row">
+  <div class="col-md-12">
+      <div class="titles">
+          <!-- <span>WHAT WE OFFER</span> -->
+          <h1 style="text-align: center;">RECENTLY ADDED HOMES</h1>
+      </div>
+  </div>
+</div>
+<!-- End Title-->
+<div class="row">
+    <!-- Item Property-->
+    {% for obj in object_list %}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="item_property">
+            <div class="head_property">
+              <a href="{{ obj.get_absolute_url }}"> 
+                {% if obj.event_image %}
+                <img src="{{ obj.event_image.url }}" alt="Image">
+              {% endif %}
+                <h5><a href='{{ obj.get_absolute_url }}'>{{ obj.event_name }} {% if obj.draft %}<h4 style="color: #cc0000;">Draft</h4>{% endif %}</a></h5>
+              </a>
+            </div>                       
+            <div class="info_property">                                  
+                <ul>
+                    <li style="text-align: center;"><strong><a href='{{ obj.get_absolute_url }}'>{{ obj.event_name }}</a></strong></li>
+                    <li><strong>County</strong><span>{{ obj.managers_name }}</span></li>
+                    <li><strong>Contacts</strong><span>+254 {{ obj.phone_number }}</span></li>
+                    <li><strong>Posted On: </strong><span>{{ obj.publish }}</span></li>
+                </ul>                                 
+            </div>
+          </div>
+    </div>
+    <!-- Item Property-->
+    {% endfor %}
+</div>
+<div class="row">
+  <div class="col-md-3 col-md-offset-5">
+    <div class="pagination">
+          <span class="step-links">
+              {% if object_list.has_previous %}
+                  <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i class="fa fa-chevron-left"></i> Previous</a>
+              {% endif %}
+
+              <span class="current">
+                  Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+              </span>
+
+              {% if object_list.has_next %}
+                  <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Go Next <i class="fa fa-chevron-right"></i></a>
+              {% endif %}
+          </span>
+      </div>
+    </div>
+</div>
+{% endblock %}
+<!-- {% block content_bottom %}
+
+{% include "layouts/search.html" %}
+<div class="double-border"></div>
+    
+{% endblock %}
+ -->

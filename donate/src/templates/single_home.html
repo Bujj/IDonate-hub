@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load urlify %}
+{% block content_top %}
+<!-- Start Page Header -->
+    <div class="page-header" style="background-image:url(../media/front.jpg);">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6 hidden-xs">
+          			<ol class="breadcrumb">
+            			<li><a href="{% url 'home' %}">Home</a></li>
+            			<li class="active">{{ instance.home_name }}</li>
+          			</ol>
+            	</div>
+            	<div class="col-md-6 col-sm-6 col-xs-12">
+    				<h2>{{ instance.home_name }}</h2>
+                </div>
+           	</div>
+        </div>
+    </div>
+    <div class="double-border"></div>
+    <!-- End Page Header -->
+    {% endblock %}
+    <!-- Secondary Header -->
+{% block content %}
+
+<div class="row">
+
+<div class="col-md-8">
+    <div class="more_slide tooltip_hover">
+        <ul>
+            <li title="Share on Facebook" data-toggle="tooltip"><i class="fa fa-facebook"></i><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">Share on Facebook</a></li>
+
+            <li title="Share on Twitter" data-toggle="tooltip"><i class="fa fa-twitter"></i><a href="https://twitter.com/home?status={{ instance.about_home }}%20{{ request.build_absolute_uri }}">Share on Twitter</a></li>
+            
+            <li style="color: #fadf99 !important;" title="Publish On" data-toggle="tooltip"><i class="fa fa-calendar"></i><a> Published On: <small>{% if instance.draft %}<span style='color:red;'>Draft</span> {% endif %}</small> {{ instance.publish }}</a></li>
+        </ul>
+    </div>
+    <div class=" image_agent">
+                {% if instance.home_image %}
+                <img style="max-height: 440px; width: 749px;" src="{{ instance.home_image.url }}" alt="Image">
+                {% endif %}
+            </div>
+</div>
+<div class="col-md-4">
+    <div class="description">
+        <h3 style="text-align: center;color: #001954;"><strong>{{ instance.home_name }}</strong></h3>
+        <ul class="info_details">                          
+            <li><strong>Manager's Name:</strong><span>Mrs. Alice Kanini</span></li>
+            <li><strong>Telephone Number:</strong><span>0722123456</span></li>
+            <li><strong>Email:</strong><span>lkanini@gmail.com</span></li>
+            <li><strong>No of Children:</strong><span>350</span></li>
+            <li><strong>Our Location:</strong><span>Soweto Kayole</span></li>
+            <li><strong>County:</strong><span>Nairobi County</span></li>
+            <li><strong>Constituency:</strong><span>Marakwet</span></li>
+            <li><strong>Is the Home Registered:</strong><span>Yes</span></li>
+            <li><strong>Gender of Children:</strong><span>Both Boys and Girls</span></li>
+        </ul>
+    </div>
+<button style="margin-top: 5px; background-color: #CC0000; color: #fff; min-width: 360px;" data-toggle="modal" data-target="#myModal">SPONSOR THIS HOME</button>
+</div>
+</div>
+<div class="row" style="padding: 0 20px; margin-top: 40px;">
+<div class="tabs">
+  <ul class="nav nav-tabs">
+    <li class="active"> <a data-toggle="tab" href="#sampletab1"> About {{ instance.home_name }}</a> </li>
+    <li> <a data-toggle="tab" href="#sampletab2"> Contact Our Director </a> </li>
+    <li> <a data-toggle="tab" href="#sampletab3"> Our Map Location </a> </li>
+  </ul>
+  <div class="tab_container">
+  <div class="tab-content">
+    <div id="sampletab1" class="tab-pane active">
+      <div class="row">
+            <div class="col-md-6">
+                <h3>About {{ instance.home_name }}</h3>
+                    <p>{{ instance.about_home }}</p>
+                </div>
+                <div class="col-md-6">
+                <h3>What We Need</h3>
+                    <p>{{ instance.about_home }}</p>
+                </div>
+            </div>
+    </div>
+    <div id="sampletab2" class="tab-pane">
+      <div class="row">
+    <div class="col-md-6">
+                    <h2>Contact Us Form</h2>
+                    <form action="" type="post">
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-6">
+                            <label>Your name *</label>
+                            <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
+                          </div>
+                          <div class="col-md-6">
+                            <label>Your email address *</label>
+                            <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <label>Comment *</label>
+                            <textarea maxlength="5000" rows="15" class="form-control" name="comment" id="comment" style="height: 148px;"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="submit" value="Submit" class="btn btn-primary" data-loading-text="Loading...">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+    <div class="col-md-6">
+    <h3>Here is Our Director</h3>                                
+         <div class="row item_agent">
+            <div class="col-md-6 image_agent">
+            {% if instance.home_image %}
+                <img src="{{ instance.home_image.url }}" alt="Image">
+                {% endif %}
+            </div>
+            <div class="col-md-6 info_agent">
+                <h3>{{ instance.managers_name }}</h3>
+                <ul>
+                    <li><i class="fa fa-envelope"></i><a href="#">pmaccarty@domain.com</a></li>
+                    <li><i class="fa fa-phone"></i><a href="#">{{ instance.phone_number }}</a></li>
+                    <li><i class="fa fa-mobile-phone"></i><a href="#">331-23-45</a></li>
+                </ul>                                        
+            </div>
+         </div>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, habitant morbi tristique senectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, habitant morbi tristique senectus</p>
+    </div>
+</div>
+    </div>
+    <div id="sampletab3" class="tab-pane">
+      	<div class="col-md-12">
+		    <h3>Map Propertie</h3>             
+		      	<div class="map_area">
+		        	<iframe src="https://maps.google.es/maps?f=d&amp;source=s_q&amp;hl=es&amp;geocode=%3BCUBxZFSzLmtjFXFAbQIdK8KW-yk7CD_TpU_CiTFi_nfhBo8LyA&amp;q=new+york&amp;aq=&amp;sll=40.396764,-3.713379&amp;sspn=9.61761,19.753418&amp;ie=UTF8&amp;hq=&amp;hnear=Nueva+York,+Estados+Unidos&amp;t=m&amp;daddr=Nueva+York,+EEUU&amp;ll=40.859525,-73.959961&amp;spn=0.311592,0.411987&amp;z=10&amp;iwloc=ddw1&amp;output=embed"></iframe>
+		      </div>
+		  </div>
+    	</div>
+  	</div>
+  	</div>
+</div>                        
+</div>
+{% endblock %}

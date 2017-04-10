@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content_top %}
+<!-- Start Page Header -->
+    <div class="page-header" style="background-image:url(../media/front.jpg);">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6 hidden-xs">
+          			<ol class="breadcrumb">
+            			<li><a href="{% url 'home' %}">Home</a></li>
+            			<li class="active">Our Management Team</li>
+          			</ol>
+            	</div>
+            	<div class="col-md-6 col-sm-6 col-xs-12">
+    				<h2>Our Management Team</h2>
+                </div>
+           	</div>
+        </div>
+    </div>
+    <div class="double-border"></div>
+    {% endblock %}
+    <!-- End Page Header -->
+    
+    <!-- Secondary Header -->
+    
+    <!-- Start Body Content -->
+  {% block content %}
+           <!-- <div class="spacer-50"></div> -->
+           	<!-- Team -->
+          	<div id="about-team">
+                <div class="container">
+                    <h2 style="text-align: center;">Our Management Team</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="staff-item">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-6">
+                                        <img src="http://placehold.it/600x500&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-md-7 col-sm-6">
+                                        <h3>Eric Gichuki</h3>
+                                        <span class="meta-data">Founder, IDonate Kenya</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="staff-item">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-6">
+                                        <img src="http://placehold.it/600x500&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-md-7 col-sm-6">
+                                        <h3>Caroline Muthambiri</h3>
+                                        <span class="meta-data">Co-Founder, IDonate Kenya</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- End Body Content -->
+    {% endblock %}

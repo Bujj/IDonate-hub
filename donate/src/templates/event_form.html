@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+<!-- {% block head_extra %} {{ form.media }} {% endblock %} -->
+
+{% block content_top %}
+<!-- Start Page Header -->
+    <div class="page-header" style="background-image:url(../media/front.jpg);">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6 hidden-xs">
+          			<ol class="breadcrumb">
+            			<li><a href="{% url 'home' %}">Home</a></li>
+            			<li class="active">{{ instance.title }}</li>
+          			</ol>
+            	</div>
+            	<div class="col-md-6 col-sm-6 col-xs-12">
+    				<h2>{{ instance.title }}</h2>
+                </div>
+           	</div>
+        </div>
+    </div>
+    <div class="double-border"></div>
+    <!-- End Page Header -->
+    {% endblock %}
+    <!-- Secondary Header -->
+{% block content %}
+<h1>Form</h1>
+<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+
+{{ form|crispy }}
+
+<input type="submit" value="Create Home">
+</form>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content_top %}
+<!-- Start Page Header -->
+    <div class="page-header" style="background-image:url(../media/front.jpg);">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6 hidden-xs">
+          			<ol class="breadcrumb">
+            			<li><a href="{% url 'home' %}">Home</a></li>
+            			<li class="active">About us</li>
+          			</ol>
+            	</div>
+            	<div class="col-md-6 col-sm-6 col-xs-12">
+    				<h2>About Us</h2>
+                </div>
+           	</div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="double-border"></div>
+    <!-- Secondary Header -->
+    <div class="secondary-bar">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                	<span class="big">Get to know all about us</span>
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="{% url 'team' %}">Our Management Team</a></li>
+                        <li><a href="{% url 'team' %}">Become a Volunteer</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- Start Body Content -->
+{% block content %}
+     		<!-- Mission -->
+            <div id="about-mission">
+                <div class="container">
+                    <h2>Our Mission</h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                    <div class="border-cols cols3">
+                        <div>
+                            <h4>Keynote Talks</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                        </div>
+                        <div>
+                            <h4>OnStage Discussions</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                        </div>
+                        <div>
+                            <h4>Mentor Session</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                        </div>
+                    </div>
+        		</div>
+          	</div>
+       	
+    <!-- End Body Content -->
+    {% endblock %}

@@ -1,0 +1,150 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Basic Page Needs
+  ================================================== -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Home Hub Application</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'>
+<link href='{% static "css/bootstrap.css" %}' rel="stylesheet" type="text/css">
+<link href='{% static "css/bootstrap-theme.css" %}' rel="stylesheet" type="text/css">
+<link href='{% static "css/style.css" %}' rel="stylesheet" type="text/css">
+<link href='{% static "vendor/prettyphoto/css/prettyPhoto.css" %}' rel="stylesheet" type="text/css">
+<link href='{% static "vendor/magnific-popup/magnific-popup.css" %}' rel="stylesheet" type="text/css"><!-- MAGINIFIC LIGHTBOX -->
+<link href='{% static "vendor/rs-plugin/css/settings.css" %}' media="screen" rel="stylesheet" type="text/css"><!-- REVOLUTION SLIDER -->
+<link href='{% static "vendor/rs-plugin/css/navstylechange.css" %}' media="screen" rel="stylesheet" type="text/css"><!-- REVOLUTION SLIDER -->
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+<link href='{% static "css/custom.css" %}' rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+<!-- Color Style -->
+<link href='{% static "colors/color1.css" %}' rel="stylesheet" type="text/css">
+<!-- SCRIPTS
+  ================================================== -->
+<script src='{% static "js/modernizr.js" %}'></script><!-- Modernizr -->
+<!-- {% block head_extra %} {% endblock %} -->
+</head>
+  <body class="boxed">
+<!--[if lt IE 7]>
+  <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<div class="body"> 
+    {% include "layouts/header.html" %}
+    {% include "layouts/nav.html" %}
+        <div class="double-border"></div>
+
+        {% block content_top %}
+              {% endblock %}
+        <div class="main" role="main">
+          <div id="content" class="content full">
+            <div class="container">
+            {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+
+          </ul>
+        {% endif %}
+              {% block content %}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+            <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
+    {% include "layouts/footer.html" %}
+</div>
+    <script src='{% static "js/jquery-2.1.1.min.js" %}'></script> <!-- Jquery Library Call -->
+    <script src='{% static "vendor/prettyphoto/js/prettyphoto.js" %}'></script> <!-- PrettyPhoto Plugin -->
+    <script src='{% static "js/helper-plugins.js" %}'></script> <!-- Helper Plugins -->
+    <script src='{% static "js/bootstrap.js" %}'></script> <!-- UI -->
+    <script src='{% static "js/init.js" %}'></script> <!-- All Scripts -->
+    <script src='{% static "vendor/flexslider/js/jquery.flexslider.js" %}'></script> <!-- FlexSlider --> 
+    <script src='{% static "vendor/rs-plugin/js/jquery.themepunch.plugins.min.js" %}'></script> 
+    <script src='{% static "vendor/rs-plugin/js/jquery.themepunch.revolution.min.js" %}'></script> 
+    <script src='{% static "js/revolution-slider-init.js" %}'""></script> <!-- Revolutions Slider Intialization --> 
+    <script src='{% static "vendor/countdown/js/jquery.countdown.min.js" %}'></script> <!-- Jquery Timer -->
+    <script type="text/javascript">
+var geocoder = new google.maps.Geocoder();
+var address = "2500 CityWest Blvd. - Suite 300 Houston, Texas - 77042 USA"; //Add your address here, all on one line.
+var latitude;
+var longitude;
+var color = "#9bc8ce"; //Set your tint color. Needs to be a hex value.
+
+function getGeocode() {
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+        latitude = results[0].geometry.location.lat();
+      longitude = results[0].geometry.location.lng(); 
+      initGoogleMap();   
+      } 
+  });
+}
+
+function initGoogleMap() {
+  var styles = [
+      {
+        stylers: [
+          { saturation: -100 }
+        ]
+      }
+  ];
+  
+  var options = {
+    mapTypeControlOptions: {
+      mapTypeIds: ['Styled']
+    },
+    center: new google.maps.LatLng(latitude, longitude),
+    zoom: 13,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    zoomControl: true,
+    disableDefaultUI: true, 
+    mapTypeId: 'Styled'
+  };
+  var div = document.getElementById('googleMap');
+  var map = new google.maps.Map(div, options);
+  marker = new google.maps.Marker({
+      map:map,
+      draggable:false,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(latitude,longitude)
+  });
+  var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+  map.mapTypes.set('Styled', styledMapType);
+  
+  var infowindow = new google.maps.InfoWindow({
+        content: "<div class='iwContent'>"+address+"</div>"
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+  
+  
+  bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-84.999999, -179.999999), 
+    new google.maps.LatLng(84.999999, 179.999999));
+
+  rect = new google.maps.Rectangle({
+      bounds: bounds,
+      fillColor: color,
+      fillOpacity: 0.2,
+      strokeWeight: 0,
+      map: map
+  });
+}
+google.maps.event.addDomListener(window, 'load', getGeocode);
+</script>   
+  </body>
+</html>

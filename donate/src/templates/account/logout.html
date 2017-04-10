@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content_top %}
+<!-- Start Page Header -->
+    <div class="page-header" style="background-image:url(http://placehold.it/1280x550&amp;text=IMAGE+PLACEHOLDER);">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6 hidden-xs">
+          			<ol class="breadcrumb">
+            			<li><a href="index.html">Home</a></li>
+            			<li class="active">Visit Us Again</li>
+          			</ol>
+            	</div>
+            	<div class="col-md-6 col-sm-6 col-xs-12">
+    				<h2>Visit Us Again</h2>
+                </div>
+           	</div>
+        </div>
+    </div>
+    <div class="double-border"></div>
+    {% endblock %}
+    <!-- End Page Header -->
+
+{% block content %}
+<div class="row">
+	<div class="col-md-4 col-md-offset-4" >
+	    <div class="form-group">
+			<h1 style="text-align: center;">{% trans "Signing Out" %}</h1>
+
+			<p style="text-align: center;">{% trans 'Are you sure you want to sign out?' %}</p>
+
+			<form method="post" action="{% url 'account_logout' %}">
+			  {% csrf_token %}
+			  {% if redirect_field_value %}
+			  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+			  {% endif %}
+			  <input style="display: block; margin: 0 auto;" type='submit' class="btn btn-primary btn-lg pull-center" value='{% trans "Yes I am Sure" %}'>
+			  <!-- <button type="submit">{% trans 'Logout From Your Account' %}</button> -->
+			</form>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
